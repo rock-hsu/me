@@ -90,6 +90,12 @@
                 "臺北市立萬芳醫院資訊室主任(曾任)"
             ]);
 
+            const [internationalBuildExp] = useState([
+                "美國－華盛頓特區醫院電子病歷交換案",
+                "史瓦帝尼－建置愛滋病國家存活行動檢驗室",
+                "聖多美普林西比－建置門診大樓醫療資訊系統"
+            ]);
+
             const [lecturer] = useState([
                 "臺灣資訊安全大會講師",
                 "臺灣雲端資訊大會講師",
@@ -234,6 +240,31 @@
                                 ))}
                             </ul>
                         </section>
+
+                        {/* ✅ 新增：國際建置系統經驗 */}
+                        <section className="mt-4 pt-4 border-t border-slate-100">
+                            <h3 className="text-sm font-bold text-slate-600 border-l-4 border-slate-400 pl-2 mb-2 flex items-center gap-2">
+                                國際建置系統經驗
+                            </h3>
+                            <ul className="space-y-1.5">
+                                {internationalBuildExp.map((item, idx) => (
+                                <li key={idx} className="flex items-start gap-2.5 text-[11px] text-slate-600 leading-snug -ml-1 p-1">
+                                    <Globe size={14} className="text-slate-400 mt-0.5 shrink-0" />
+                                    <span>{item}</span>
+                                </li>
+                                ))}
+
+                                {/* ✅ 最後一條：COVID 期間改淡灰註解 */}
+                                <li className="flex items-start gap-2.5 text-[11px] text-slate-600 leading-snug -ml-1 p-1">
+                                    <Globe size={14} className="text-slate-400 mt-0.5 shrink-0" />
+                                    <span>
+                                        宏都拉斯－建置公立醫院醫療資訊系統
+                                        <span className="text-slate-400 text-[10px] ml-1">（COVID 期間）</span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </section>
+
                     </div>
 
                     {/* RIGHT */}
