@@ -5,38 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>許權廣(Rock) 簡歷</title>
 
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    .clamp-2{
-      display:-webkit-box;
-      -webkit-box-orient:vertical;
-      -webkit-line-clamp:2;
-      overflow:hidden;
-    }
-    .avoid-break { break-inside: avoid; }
+    /* 列印：整頁微縮 3%（螢幕正常、列印更保險進一頁） */
     @media print {
       @page { margin: 0; size: A4; }
-      body { margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #fff !important; }
       .print-scale {
         transform: scale(0.97);
         transform-origin: top left;
         width: calc(100% / 0.97);
       }
-      .a4 { box-shadow: none !important; border-radius: 0 !important; border: 0 !important; }
+      .print-hide { display: none !important; }
+      .shadow-screen { box-shadow: none !important; }
+    }
+
+    /* 單行省略（防止你討厭的「第二行」） */
+    .one-line {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   </style>
 </head>
 
-<body class="bg-slate-100">
-  <!-- Download -->
+<body class="bg-slate-200">
+  <!-- 下載 PDF -->
   <button
     onclick="window.print()"
-    class="fixed bottom-8 right-8 bg-slate-900 hover:bg-slate-800 text-white px-5 py-3 rounded-full shadow-xl transition-all z-50 flex items-center gap-3 print:hidden hover:scale-105 border border-white/10"
+    class="print-hide fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-2xl transition-all z-50 flex items-center gap-3 hover:scale-105 border border-white/20 cursor-pointer"
     title="列印 / 另存為 PDF"
   >
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-90">
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
       <polyline points="7 10 12 15 17 10"></polyline>
       <line x1="12" x2="12" y1="15" y2="3"></line>
@@ -44,549 +47,277 @@
     <span class="font-semibold tracking-wide">下載 PDF</span>
   </button>
 
-  <div class="py-6 flex justify-center font-sans antialiased text-slate-800 print-scale">
-    <!-- A4 -->
-    <div class="a4 w-[210mm] h-[296mm] bg-white shadow-2xl rounded-2xl overflow-hidden border border-slate-200">
+  <!-- 置中容器 -->
+  <div class="min-h-screen py-6 flex justify-center font-sans antialiased text-slate-800">
+    <!-- A4：螢幕固定 A4，列印用 print-scale 再縮 3% -->
+    <div class="print-scale w-[210mm] h-[296mm] bg-white rounded-2xl overflow-hidden shadow-screen shadow-2xl border border-slate-200">
 
-      <!-- Header -->
-      <div class="relative px-7 pt-7 pb-6 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white">
-        <div class="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-500"></div>
+      <!-- Header（高級深色漸層 + 結構更俐落） -->
+      <div class="relative px-7 pt-7 pb-6 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
+        <div class="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-700"></div>
 
-        <div class="flex items-center gap-6">
+        <div class="flex gap-7 items-start">
           <!-- Photo -->
-          <div class="w-28 h-36 rounded-xl overflow-hidden border border-white/15 bg-slate-800 shadow-lg shrink-0">
-            <img
-              src="./rock.jpg"
-              alt="許權廣"
-              class="w-full h-full object-cover"
-              onerror="this.onerror=null; this.parentNode.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center text-slate-400 text-xs&quot;>rock.jpg</div>';"
-            />
+          <div class="shrink-0">
+            <div class="w-28 h-36 rounded-xl overflow-hidden ring-2 ring-white/15 shadow-xl bg-slate-900">
+              <img
+                src="./rock.jpg"
+                alt="許權廣"
+                class="w-full h-full object-cover"
+                onerror="this.onerror=null; this.parentNode.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center text-slate-400 text-xs bg-slate-900&quot;>rock.jpg</div>';"
+              />
+            </div>
           </div>
 
-          <!-- Info -->
+          <!-- Title/Contact -->
           <div class="flex-1 min-w-0">
-            <div class="flex items-start justify-between gap-5">
+            <div class="flex items-start justify-between gap-6">
               <div class="min-w-0">
-                <h1 class="text-3xl font-extrabold tracking-tight leading-none">許權廣</h1>
-                <p class="mt-2 text-lg text-sky-300 font-semibold tracking-wide">陽明交大竹銘醫院資訊長</p>
-
-                <!-- Tags -->
-                <div class="mt-4 flex flex-wrap gap-2">
-                  <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold">人工智慧</span>
-                  <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold">資訊安全</span>
-                  <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold">醫院管理</span>
-                  <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold">醫護資訊</span>
-                  <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold">國際標準</span>
+                <div class="flex items-baseline gap-3">
+                  <h1 class="text-3xl font-extrabold tracking-tight">許權廣</h1>
+                  <span class="text-sm text-slate-300 font-semibold tracking-wide">(Rock)</span>
                 </div>
+                <h2 class="mt-1 text-lg font-semibold text-cyan-200 tracking-wide">陽明交大竹銘醫院資訊長</h2>
               </div>
 
-              <!-- Contact -->
-              <div class="flex flex-col items-end gap-2 text-sm text-white/85 shrink-0">
-                <div class="flex items-center gap-2">
-                  <!-- mail -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-300">
-                    <rect width="20" height="16" x="2" y="4" rx="2" />
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              <div class="shrink-0 text-sm text-slate-200 space-y-1.5">
+                <div class="flex items-center gap-2 justify-end">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-300">
+                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                   </svg>
-                  <span class="whitespace-nowrap">rock.hsu@chuming.org.tw</span>
+                  <span class="one-line max-w-[260px]" title="rock.hsu@chuming.org.tw">rock.hsu@chuming.org.tw</span>
                 </div>
-                <div class="flex items-center gap-2">
-                  <!-- phone -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-300">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                <div class="flex items-center gap-2 justify-end">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-cyan-300">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                   </svg>
-                  <span class="whitespace-nowrap">0989-632-514</span>
+                  <span>0989-632-514</span>
                 </div>
               </div>
             </div>
 
-            <!-- subtle line -->
-            <div class="mt-5 h-px bg-white/10"></div>
+            <!-- Tags：縮小、整齊、不要擠 -->
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 border border-white/15 text-white">人工智慧</span>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 border border-white/15 text-white">資訊安全</span>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 border border-white/15 text-white">醫院管理</span>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 border border-white/15 text-white">醫護資訊</span>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 border border-white/15 text-white">國際標準</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Content -->
-      <div class="px-7 py-6 grid grid-cols-2 gap-6">
-        <!-- LEFT -->
-        <div class="space-y-4">
+      <!-- 內容區（嚴格控制一頁：間距、字級、行高都收斂） -->
+      <div class="h-[calc(296mm-112px)] px-7 py-5">
+        <div class="grid grid-cols-2 gap-6 h-full">
 
-          <!-- Education -->
-          <section>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-1.5 h-5 rounded-full bg-blue-600"></span>
-              <h3 class="text-sm font-extrabold text-slate-900 tracking-wide">學歷</h3>
-              <span class="flex-1 h-px bg-slate-200"></span>
-            </div>
-
-            <div class="space-y-2">
-              <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 flex gap-3">
-                <!-- cap -->
-                <div class="mt-0.5 text-blue-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <div class="text-sm font-extrabold text-slate-900">臺北醫學大學</div>
-                  <div class="text-xs text-slate-600 mt-0.5">醫學資訊研究所 碩士</div>
-                </div>
+          <!-- LEFT -->
+          <div class="flex flex-col min-h-0">
+            <!-- 區塊：學歷 -->
+            <section class="mb-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-1 h-4 rounded bg-blue-600"></span>
+                <h3 class="text-sm font-extrabold tracking-wide text-slate-900">學歷</h3>
+                <span class="flex-1 h-px bg-slate-200"></span>
               </div>
 
-              <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 flex gap-3">
-                <div class="mt-0.5 text-blue-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                  </svg>
+              <div class="space-y-2">
+                <div class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+                  <div class="text-sm font-bold text-slate-900">臺北醫學大學</div>
+                  <div class="text-xs text-slate-600">醫學資訊研究所 碩士</div>
                 </div>
-                <div class="flex-1">
-                  <div class="text-sm font-extrabold text-slate-900">臺北醫學大學</div>
-                  <div class="text-xs text-slate-600 mt-0.5">醫學護理系 畢業</div>
+                <div class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+                  <div class="text-sm font-bold text-slate-900">臺北醫學大學</div>
+                  <div class="text-xs text-slate-600">醫學護理系 畢業</div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
 
-          <!-- Licenses -->
-          <section>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-1.5 h-5 rounded-full bg-blue-600"></span>
-              <h3 class="text-sm font-extrabold text-slate-900 tracking-wide">專業證照資格</h3>
-              <span class="flex-1 h-px bg-slate-200"></span>
-            </div>
+            <!-- 區塊：證照 -->
+            <section class="mb-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-1 h-4 rounded bg-blue-600"></span>
+                <h3 class="text-sm font-extrabold tracking-wide text-slate-900">專業證照資格</h3>
+                <span class="flex-1 h-px bg-slate-200"></span>
+              </div>
 
-            <div class="p-3 rounded-xl border border-slate-200 bg-white">
-              <ul class="space-y-1.5 text-xs text-slate-700">
-                <li class="flex items-start gap-2">
-                  <span class="mt-1 text-slate-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="8" r="7"></circle>
-                      <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                    </svg>
-                  </span>
-                  <span>臺灣高等考試護理師執照</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-1 text-slate-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="8" r="7"></circle>
-                      <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                    </svg>
-                  </span>
-                  <span>ISO27001 主導稽核員</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-1 text-slate-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="8" r="7"></circle>
-                      <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                    </svg>
-                  </span>
-                  <span>ISO27701 主導稽核員</span>
-                </li>
-              </ul>
-            </div>
-          </section>
+              <div class="rounded-xl border border-slate-200 bg-white px-3 py-2">
+                <ul class="space-y-1 text-xs text-slate-700">
+                  <li class="flex items-start gap-2">
+                    <span class="mt-[2px] w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                    <span class="one-line" title="臺灣高等考試護理師執照">臺灣高等考試護理師執照</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="mt-[2px] w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                    <span class="one-line" title="ISO27001 主導稽核員">ISO27001 主導稽核員</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="mt-[2px] w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                    <span class="one-line" title="ISO27701 主導稽核員">ISO27701 主導稽核員</span>
+                  </li>
+                </ul>
+              </div>
+            </section>
 
-          <!-- Current -->
-          <section>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-1.5 h-5 rounded-full bg-blue-600"></span>
-              <h3 class="text-sm font-extrabold text-slate-900 tracking-wide">主要現職與委員經歷</h3>
-              <span class="flex-1 h-px bg-slate-200"></span>
-            </div>
+            <!-- 區塊：現職（改成更像高階履歷的兩欄清單，避免一排擠爆換行） -->
+            <section class="mb-4 min-h-0">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-1 h-4 rounded bg-blue-600"></span>
+                <h3 class="text-sm font-extrabold tracking-wide text-slate-900">主要現職與委員經歷</h3>
+                <span class="flex-1 h-px bg-slate-200"></span>
+              </div>
 
-            <div class="p-3 rounded-xl border border-slate-200 bg-white">
-              <ul class="columns-2 gap-6 text-[11px] text-slate-800 leading-snug">
-                <!-- icon: briefcase -->
-                <li class="avoid-break mb-2 flex gap-2">
-                  <span class="mt-0.5 text-blue-600 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  </span>
-                  <span>陽明交大竹銘醫院資訊長 (現任)</span>
-                </li>
+              <div class="rounded-xl border border-slate-200 bg-white p-3">
+                <ul class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[11px] text-slate-700">
+                  <li class="one-line" title="陽明交大竹銘醫院資訊長 (現任)">陽明交大竹銘醫院資訊長 (現任)</li>
+                  <li class="one-line" title="臺灣醫院協會健康管理資訊委員會委員 (現任)">臺灣醫院協會健康管理資訊委員會委員 (現任)</li>
+                  <li class="one-line" title="臺灣私立醫療院所協會資促會幹事 (現任)">臺灣私立醫療院所協會資促會幹事 (現任)</li>
+                  <li class="one-line" title="衛福部與數發部資訊資安計畫案審查委員 (現任)">衛福部與數發部資訊資安計畫案審查委員 (現任)</li>
+                  <li class="one-line" title="台北市立聯合醫院資通安全審查外部委員 (現任)">台北市立聯合醫院資通安全審查外部委員 (現任)</li>
+                  <li class="one-line" title="教育部資通安全管理面與技術面稽核員 (現任)">教育部資通安全管理面與技術面稽核員 (現任)</li>
+                  <li class="one-line" title="行政院公務人員資通安全職能訓練講師 (現任)">行政院公務人員資通安全職能訓練講師 (現任)</li>
+                  <li class="one-line" title="新北市青年局生技創業導師 (現任)">新北市青年局生技創業導師 (現任)</li>
+                  <li class="one-line col-span-2" title="台北三大生殖中心資訊顧問 (現任)">台北三大生殖中心資訊顧問 (現任)</li>
+                </ul>
+              </div>
+            </section>
 
-                <li class="avoid-break mb-2 flex gap-2">
-                  <span class="mt-0.5 text-blue-600 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  </span>
-                  <span>臺灣醫院協會健康管理資訊委員會委員 (現任)</span>
-                </li>
+            <!-- 撐到底 -->
+            <div class="flex-1"></div>
 
-                <li class="avoid-break mb-2 flex gap-2">
-                  <span class="mt-0.5 text-blue-600 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  </span>
-                  <span>臺灣私立醫療院所協會資促會幹事 (現任)</span>
-                </li>
+            <!-- 左下：相關重要經歷（你指定的 7 條，單行省略） -->
+            <section class="mt-3">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-1 h-4 rounded bg-slate-500"></span>
+                <h3 class="text-sm font-extrabold tracking-wide text-slate-700">相關重要經歷</h3>
+                <span class="flex-1 h-px bg-slate-200"></span>
+              </div>
 
-                <li class="avoid-break mb-2 flex gap-2">
-                  <span class="mt-0.5 text-blue-600 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  </span>
-                  <span>衛福部與數發部資訊資安計畫案審查委員 (現任)</span>
-                </li>
+              <div class="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                <ul class="space-y-1 text-[11px] text-slate-700">
+                  <li class="one-line" title="臺北醫學大學副資訊長兼資訊安全組長(曾任)">臺北醫學大學副資訊長兼資訊安全組長(曾任)</li>
+                  <li class="one-line" title="臺北醫學大學副資訊長兼網路通訊組長(曾任)">臺北醫學大學副資訊長兼網路通訊組長(曾任)</li>
+                  <li class="one-line" title="臺北市立萬芳醫院資訊長 (曾任)">臺北市立萬芳醫院資訊長 (曾任)</li>
+                  <li class="one-line" title="臺北市立萬芳醫院資訊室主任(曾任)">臺北市立萬芳醫院資訊室主任(曾任)</li>
+                  <li class="one-line" title="臺北市立萬芳醫院資訊室副主任(曾任)">臺北市立萬芳醫院資訊室副主任(曾任)</li>
+                  <li class="one-line" title="臺北醫學大學卓越癌症計畫研究護士(曾任)">臺北醫學大學卓越癌症計畫研究護士(曾任)</li>
+                  <li class="one-line" title="臺灣醫學資訊學會研究助理(曾任)">臺灣醫學資訊學會研究助理(曾任)</li>
+                </ul>
+              </div>
+            </section>
+          </div>
 
-                <li class="avoid-break mb-2 flex gap-2">
-                  <span class="mt-0.5 text-blue-600 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  </span>
-                  <span>台北市立聯合醫院資通安全審查外部委員 (現任)</span>
-                </li>
+          <!-- RIGHT -->
+          <div class="flex flex-col min-h-0">
+            <!-- 講師 -->
+            <section class="mb-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-1 h-4 rounded bg-slate-500"></span>
+                <h3 class="text-sm font-extrabold tracking-wide text-slate-700">講師經歷</h3>
+                <span class="flex-1 h-px bg-slate-200"></span>
+              </div>
 
-                <li class="avoid-break mb-2 flex gap-2">
-                  <span class="mt-0.5 text-blue-600 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  </span>
-                  <span>教育部資通安全管理面與技術面稽核員 (現任)</span>
-                </li>
+              <div class="rounded-xl border border-slate-200 bg-white p-3">
+                <ul class="grid grid-cols-1 gap-y-1.5 text-[11px] text-slate-700">
+                  <li class="one-line" title="臺灣資訊安全大會講師">臺灣資訊安全大會講師</li>
+                  <li class="one-line" title="臺灣雲端資訊大會講師">臺灣雲端資訊大會講師</li>
+                  <li class="one-line" title="臺灣醫務管理學會講師">臺灣醫務管理學會講師</li>
+                  <li class="one-line" title="臺灣健康智慧醫療科技發展學會講師">臺灣健康智慧醫療科技發展學會講師</li>
+                </ul>
+              </div>
+            </section>
 
-                <li class="avoid-break mb-2 flex gap-2">
-                  <span class="mt-0.5 text-blue-600 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  </span>
-                  <span>行政院公務人員資通安全職能訓練講師 (現任)</span>
-                </li>
+            <!-- 論文 -->
+            <section class="mb-4 min-h-0">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-1 h-4 rounded bg-blue-600"></span>
+                <h3 class="text-sm font-extrabold tracking-wide text-slate-900">國際學術發表與論文</h3>
+                <span class="flex-1 h-px bg-slate-200"></span>
+              </div>
 
-                <li class="avoid-break mb-2 flex gap-2">
-                  <span class="mt-0.5 text-blue-600 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  </span>
-                  <span>新北市青年局生技創業導師 (現任)</span>
-                </li>
+              <div class="rounded-xl border border-slate-200 bg-white p-3">
+                <div class="flex items-center justify-between mb-1.5">
+                  <div class="text-xs font-extrabold text-slate-800">碩士論文</div>
+                  <div class="text-[10px] text-slate-400 font-semibold tracking-wide">Thesis</div>
+                </div>
+                <div class="text-[10px] text-slate-600 italic leading-snug">
+                  Presentation and visualization of large-scale/multi-dimension disease associations – making sense of diseasome to clinicians and researchers of prostate cancer
+                </div>
 
-                <li class="avoid-break mb-0 flex gap-2">
-                  <span class="mt-0.5 text-blue-600 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                    </svg>
-                  </span>
-                  <span>台北三大生殖中心資訊顧問 (現任)</span>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <!-- Past -->
-          <section>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-1.5 h-5 rounded-full bg-slate-400"></span>
-              <h3 class="text-sm font-extrabold text-slate-700 tracking-wide">相關重要經歷</h3>
-              <span class="flex-1 h-px bg-slate-200"></span>
-            </div>
-
-            <div class="p-3 rounded-xl border border-slate-200 bg-slate-50">
-              <ul class="space-y-1.5 text-[11px] text-slate-800 leading-snug">
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-500 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                    </svg>
-                  </span>
-                  <span>臺北醫學大學副資訊長兼資訊安全組長(曾任)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-500 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                    </svg>
-                  </span>
-                  <span>臺北醫學大學副資訊長兼網路通訊組長(曾任)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-500 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                    </svg>
-                  </span>
-                  <span>臺北市立萬芳醫院資訊長 (曾任)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-500 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                    </svg>
-                  </span>
-                  <span>臺北市立萬芳醫院資訊室主任(曾任)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-500 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                    </svg>
-                  </span>
-                  <span>臺北市立萬芳醫院資訊室副主任(曾任)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-500 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                    </svg>
-                  </span>
-                  <span>臺北醫學大學卓越癌症計畫研究護士(曾任)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-500 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                    </svg>
-                  </span>
-                  <span>臺灣醫學資訊學會研究助理(曾任)</span>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-        </div>
-
-        <!-- RIGHT -->
-        <div class="space-y-4">
-
-          <!-- Lecturer -->
-          <section>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-1.5 h-5 rounded-full bg-slate-400"></span>
-              <h3 class="text-sm font-extrabold text-slate-700 tracking-wide">講師經歷</h3>
-              <span class="flex-1 h-px bg-slate-200"></span>
-            </div>
-
-            <div class="p-3 rounded-xl border border-slate-200 bg-white">
-              <ul class="space-y-1.5 text-xs text-slate-800">
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-400 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg>
-                  </span>
-                  <span>臺灣資訊安全大會講師</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-400 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg>
-                  </span>
-                  <span>臺灣雲端資訊大會講師</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-400 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg>
-                  </span>
-                  <span>臺灣醫務管理學會講師</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-400 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg>
-                  </span>
-                  <span>臺灣健康智慧醫療科技發展學會講師</span>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-          <!-- Publications -->
-          <section>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-1.5 h-5 rounded-full bg-blue-600"></span>
-              <h3 class="text-sm font-extrabold text-slate-900 tracking-wide">國際學術發表與論文</h3>
-              <span class="flex-1 h-px bg-slate-200"></span>
-            </div>
-
-            <!-- Thesis -->
-            <div class="p-3 rounded-xl border border-slate-200 bg-slate-50">
-              <div class="flex items-start justify-between gap-3">
-                <div>
-                  <div class="text-[11px] font-extrabold text-slate-900">碩士論文</div>
-                  <div class="mt-1 text-[10px] text-slate-600 italic leading-snug">
-                    Presentation and visualization of large-scale/multi-dimension disease associations – making sense of diseasome to clinicians and researchers of prostate cancer
+                <div class="mt-3 pt-3 border-t border-slate-100">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="text-xs font-extrabold text-slate-800">國際發表部份列舉</div>
+                    <div class="text-[10px] text-slate-400 font-semibold tracking-wide">Selected Publications</div>
                   </div>
+
+                  <ol class="space-y-1.5 text-[10px] text-slate-700">
+                    <li class="flex gap-2">
+                      <span class="w-5 text-slate-400 font-bold">1.</span>
+                      <span class="one-line" title="Shuo-Chen Chien, Chia-Hui Chien, Chun-You Chen, Po-Han Chien, Chun-Kung Hsu, Hsuan-Chia Yang, and Yu-Chuan Jack Li: Using Technology Acceptance Model to Explore Physicians' Perspectives of Clinical Decision Support System Alerts. BMJ Health & Care Informatics (2024 JIF=4.4, ranking 43/185=77.03%, ESCI) 2025.">
+                        Shuo-Chen Chien, Chia-Hui Chien... BMJ Health & Care Informatics... 2025.
+                      </span>
+                    </li>
+                    <li class="flex gap-2">
+                      <span class="w-5 text-slate-400 font-bold">2.</span>
+                      <span class="one-line" title="Huang Chu Ya, Nguyen Phung Anh Alex, Clinciu Daniel L., Hsu Chun Kung, et al. A personalized medication management platform (PMMP) to improve medication adherence: A randomized control trial. Computer Methods and Programs in Biomedicine 2017(140):275-281.">
+                        Huang Chu Ya, Nguyen Phung Anh Alex... CMPB 2017...
+                      </span>
+                    </li>
+                    <li class="flex gap-2">
+                      <span class="w-5 text-slate-400 font-bold">3.</span>
+                      <span class="one-line" title="Usman Iqbal, Chun-Kung Hsu, Phung Anh (Alex) Ngu, et al. Cancer-Disease Associations: A Visualization and Animation through Medical Big Data. Computer Methods and Programs in Biomedicine 2016(127):44-51.">
+                        Usman Iqbal, Chun-Kung Hsu... CMPB 2016...
+                      </span>
+                    </li>
+                    <li class="flex gap-2">
+                      <span class="w-5 text-slate-400 font-bold">4.</span>
+                      <span class="one-line" title="Chu-Ya Huang, Phung-Anh Nguyen... Chun-Kung Hsu, et al. A Personalized Medication Management Platform (PMMP) to Improve Medication Adherence. Computer Methods and Programs in Biomedicine 2016.">
+                        Chu-Ya Huang... PMMP... 2016.
+                      </span>
+                    </li>
+                    <li class="flex gap-2">
+                      <span class="w-5 text-slate-400 font-bold">5.</span>
+                      <span class="one-line" title="Chun-Ming Shih... Chun-Kung Hsu, et al. Managing mass events and competitions with difficult-to-access locations using mobile electrocardiac monitoring. Computer Methods and Programs in Biomedicine 2015(121):109-115.">
+                        Chun-Ming Shih... mobile electrocardiac... 2015...
+                      </span>
+                    </li>
+                    <li class="flex gap-2">
+                      <span class="w-5 text-slate-400 font-bold">6.</span>
+                      <span class="one-line" title="Jian WS... Hsu CK, et al. LabPush: a pilot study of providing remote clinics with laboratory results via short message service (SMS) in Swaziland, Africa. PLoS ONE. 7(9): e44462">
+                        Jian WS... LabPush... PLoS ONE 7(9): e44462
+                      </span>
+                    </li>
+                  </ol>
                 </div>
-                <span class="text-[10px] text-slate-400 font-semibold">Thesis</span>
               </div>
-            </div>
+            </section>
 
-            <!-- Selected Publications -->
-            <div class="mt-3 p-3 rounded-xl border border-slate-200 bg-white">
-              <div class="flex items-end justify-between mb-2">
-                <div class="text-[11px] font-extrabold text-slate-800">國際發表部份列舉</div>
-                <div class="text-[10px] text-slate-400">Selected Publications</div>
+            <!-- 撐到底 -->
+            <div class="flex-1"></div>
+
+            <!-- 國際建置 -->
+            <section class="mt-3">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-1 h-4 rounded bg-slate-500"></span>
+                <h3 class="text-sm font-extrabold tracking-wide text-slate-700">國際建置系統經驗</h3>
+                <span class="flex-1 h-px bg-slate-200"></span>
               </div>
 
-              <ol class="space-y-2">
-                <li class="flex gap-2 text-[9.5px] leading-snug">
-                  <span class="font-extrabold text-slate-400 min-w-[16px]">1.</span>
-                  <span class="clamp-2">
-                    <span class="font-semibold text-slate-800">BMJ Health & Care Informatics</span>
-                    <span class="text-slate-500"> — Using Technology Acceptance Model to Explore Physicians' Perspectives of Clinical Decision Support System Alerts.</span>
-                    <span class="text-slate-400"> (2025)</span>
-                  </span>
-                </li>
-                <li class="flex gap-2 text-[9.5px] leading-snug">
-                  <span class="font-extrabold text-slate-400 min-w-[16px]">2.</span>
-                  <span class="clamp-2">
-                    <span class="font-semibold text-slate-800">Computer Methods and Programs in Biomedicine</span>
-                    <span class="text-slate-500"> — A personalized medication management platform (PMMP) to improve medication adherence: A randomized control trial.</span>
-                    <span class="text-slate-400"> (2017)</span>
-                  </span>
-                </li>
-                <li class="flex gap-2 text-[9.5px] leading-snug">
-                  <span class="font-extrabold text-slate-400 min-w-[16px]">3.</span>
-                  <span class="clamp-2">
-                    <span class="font-semibold text-slate-800">Computer Methods and Programs in Biomedicine</span>
-                    <span class="text-slate-500"> — Cancer-Disease Associations: A Visualization and Animation through Medical Big Data.</span>
-                    <span class="text-slate-400"> (2016)</span>
-                  </span>
-                </li>
-                <li class="flex gap-2 text-[9.5px] leading-snug">
-                  <span class="font-extrabold text-slate-400 min-w-[16px]">4.</span>
-                  <span class="clamp-2">
-                    <span class="font-semibold text-slate-800">Computer Methods and Programs in Biomedicine</span>
-                    <span class="text-slate-500"> — A Personalized Medication Management Platform (PMMP) to Improve Medication Adherence.</span>
-                    <span class="text-slate-400"> (2016)</span>
-                  </span>
-                </li>
-                <li class="flex gap-2 text-[9.5px] leading-snug">
-                  <span class="font-extrabold text-slate-400 min-w-[16px]">5.</span>
-                  <span class="clamp-2">
-                    <span class="font-semibold text-slate-800">Computer Methods and Programs in Biomedicine</span>
-                    <span class="text-slate-500"> — Managing mass events and competitions with difficult-to-access locations using mobile electrocardiac monitoring.</span>
-                    <span class="text-slate-400"> (2015)</span>
-                  </span>
-                </li>
-                <li class="flex gap-2 text-[9.5px] leading-snug">
-                  <span class="font-extrabold text-slate-400 min-w-[16px]">6.</span>
-                  <span class="clamp-2">
-                    <span class="font-semibold text-slate-800">PLoS ONE</span>
-                    <span class="text-slate-500"> — LabPush: providing remote clinics with laboratory results via SMS in Swaziland, Africa.</span>
-                    <span class="text-slate-400"> (2012)</span>
-                  </span>
-                </li>
-              </ol>
-            </div>
-          </section>
-
-          <!-- International -->
-          <section>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-1.5 h-5 rounded-full bg-slate-400"></span>
-              <h3 class="text-sm font-extrabold text-slate-700 tracking-wide">國際建置系統經驗</h3>
-              <span class="flex-1 h-px bg-slate-200"></span>
-            </div>
-
-            <div class="p-3 rounded-xl border border-slate-200 bg-slate-50">
-              <ul class="space-y-1.5 text-[11px] text-slate-800 leading-snug">
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-500 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20"></path>
-                      <path d="M2 12h20"></path>
-                    </svg>
-                  </span>
-                  <span>美國－華盛頓特區醫院電子病歷交換案</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-500 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20"></path>
-                      <path d="M2 12h20"></path>
-                    </svg>
-                  </span>
-                  <span>史瓦帝尼－建置愛滋病國家存活行動檢驗室</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-500 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20"></path>
-                      <path d="M2 12h20"></path>
-                    </svg>
-                  </span>
-                  <span>聖多美普林西比－建置門診大樓醫療資訊系統</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="mt-0.5 text-slate-500 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20"></path>
-                      <path d="M2 12h20"></path>
-                    </svg>
-                  </span>
-                  <span>
-                    宏都拉斯－建置公立醫院醫療資訊系統
-                    <span class="text-slate-400 text-[10px] ml-1">（COVID 期間）</span>
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </section>
+              <div class="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                <ul class="space-y-1 text-[11px] text-slate-700">
+                  <li class="one-line" title="美國－華盛頓特區醫院電子病歷交換案">美國－華盛頓特區醫院電子病歷交換案</li>
+                  <li class="one-line" title="史瓦帝尼－建置愛滋病國家存活行動檢驗室">史瓦帝尼－建置愛滋病國家存活行動檢驗室</li>
+                  <li class="one-line" title="聖多美普林西比－建置門診大樓醫療資訊系統">聖多美普林西比－建置門診大樓醫療資訊系統</li>
+                  <li class="flex items-baseline gap-2 min-w-0">
+                    <span class="one-line flex-1 min-w-0" title="宏都拉斯－建置公立醫院醫療資訊系統">宏都拉斯－建置公立醫院醫療資訊系統</span>
+                    <span class="shrink-0 text-[10px] text-slate-400 font-semibold">（COVID 期間）</span>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </div>
 
         </div>
       </div>
