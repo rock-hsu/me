@@ -9,225 +9,293 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-  @media print {
-  .print-scale {
-    transform: scale(0.97);
-    transform-origin: top left;
-    width: calc(100% / 0.97);
-  }
-}
+    /* 兩行截斷（避免論文把版面撐爆） */
+    .clamp-2{
+      display:-webkit-box;
+      -webkit-box-orient:vertical;
+      -webkit-line-clamp:2;
+      overflow:hidden;
+    }
+
+    @media print {
+      @page { margin: 0; size: A4; }
+      body { margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      /* ✅ 列印專用：整張縮小 3%（螢幕不變） */
+      .print-scale {
+        transform: scale(0.97);
+        transform-origin: top left;
+        width: calc(100% / 0.97);
+      }
+
+      /* 列印時避免陰影圓角造成「看起來像跑版」 */
+      .a4 {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
+    }
   </style>
 </head>
 
-<body class="bg-gray-200">
+<body class="bg-slate-100">
   <!-- PDF Download Button -->
   <button
     onclick="window.print()"
-    class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-2xl transition-all z-50 flex items-center gap-3 print:hidden hover:scale-105 border-2 border-white/20 cursor-pointer"
+    class="fixed bottom-8 right-8 bg-slate-900 hover:bg-slate-800 text-white px-5 py-3 rounded-full shadow-xl transition-all z-50 flex items-center gap-3 print:hidden hover:scale-105 border border-white/10"
     title="列印 / 另存為 PDF"
   >
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-90">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
       <polyline points="7 10 12 15 17 10"></polyline>
       <line x1="12" x2="12" y1="15" y2="3"></line>
     </svg>
-    <span class="font-bold tracking-wide">下載 PDF</span>
+    <span class="font-semibold tracking-wide">下載 PDF</span>
   </button>
 
-  <!-- A4 Container -->
-  <div class="py-4 flex justify-center font-sans antialiased text-slate-800">
-    <div class="w-[210mm] h-[296mm] bg-white shadow-2xl flex flex-col overflow-hidden
-            print:shadow-none print:w-full print:h-auto print:m-0 print:overflow-visible">
+  <div class="py-6 flex justify-center font-sans antialiased text-slate-800 print-scale">
+    <!-- A4 -->
+    <div class="a4 w-[210mm] h-[296mm] bg-white shadow-2xl rounded-2xl overflow-hidden border border-slate-200">
 
       <!-- Header -->
-      <div class="bg-slate-900 text-white p-6 shrink-0 flex items-center justify-between border-b-4 border-blue-600">
-        <div class="flex items-center gap-8 w-full">
+      <div class="relative px-7 pt-7 pb-6 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white">
+        <div class="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-500"></div>
 
+        <div class="flex items-center gap-7">
           <!-- Photo -->
-          <div class="relative w-32 h-44 shrink-0 bg-slate-800 rounded-lg overflow-hidden border-4 border-slate-600 shadow-xl">
+          <div class="w-28 h-36 rounded-xl overflow-hidden border border-white/15 bg-slate-800 shadow-lg shrink-0">
             <img
               src="./rock.jpg"
               alt="許權廣"
               class="w-full h-full object-cover"
-              onerror="this.onerror=null; this.parentNode.innerHTML='<div class=&quot;flex flex-col items-center justify-center w-full h-full text-slate-500 text-xs text-center p-1 bg-slate-800&quot;><span>無法讀取</span><span class=&quot;text-[10px] mt-1&quot;>rock.jpg</span></div>';"
+              onerror="this.onerror=null; this.parentNode.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center text-slate-400 text-xs&quot;>rock.jpg</div>';"
             />
           </div>
 
-          <!-- Info -->
-          <div class="flex-1 flex flex-col justify-center gap-1">
-            <div>
-              <h1 class="text-3xl font-extrabold tracking-tight mb-1">許權廣</h1>
-              <h2 class="text-xl text-blue-400 font-medium tracking-wide">陽明交大竹銘醫院資訊長</h2>
+          <!-- Title -->
+          <div class="flex-1 min-w-0">
+            <div class="flex items-end justify-between gap-4">
+              <div class="min-w-0">
+                <h1 class="text-3xl font-extrabold tracking-tight leading-none">許權廣</h1>
+                <p class="mt-2 text-lg text-sky-300 font-semibold tracking-wide">陽明交大竹銘醫院資訊長</p>
+              </div>
+
+              <!-- Contact -->
+              <div class="hidden sm:flex flex-col items-end gap-2 text-sm text-white/80">
+                <div class="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-300">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                  <span class="truncate">rock.hsu@chuming.org.tw</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-300">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                  <span>0989-632-514</span>
+                </div>
+              </div>
             </div>
 
-            <div class="flex flex-wrap gap-x-6 gap-y-1 text-sm text-slate-300 font-light mt-1">
+            <!-- Chips -->
+            <div class="mt-4 flex flex-wrap gap-2">
+              <!-- small shield -->
+              <template id="chipIcon"></template>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold">人工智慧</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold">資訊安全</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold">醫院管理</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold">醫護資訊</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/90 text-xs font-semibold">國際標準</span>
+            </div>
+
+            <!-- Contact (mobile) -->
+            <div class="sm:hidden mt-4 flex flex-col gap-1.5 text-sm text-white/80">
               <div class="flex items-center gap-2">
-                <span class="text-blue-400">✉</span>
-                <span>rock.hsu@chuming.org.tw</span>
+                <span class="text-sky-300">✉</span><span class="truncate">rock.hsu@chuming.org.tw</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="text-blue-400">☎</span>
-                <span>0989-632-514</span>
+                <span class="text-sky-300">☎</span><span>0989-632-514</span>
               </div>
             </div>
 
-            <!-- Tags -->
-            <div class="flex flex-nowrap gap-2 mt-3 overflow-visible">
-              <span class="whitespace-nowrap bg-blue-600/20 text-blue-100 px-3 py-1 rounded text-sm border border-blue-500/30 shadow-sm">🛡 人工智慧</span>
-              <span class="whitespace-nowrap bg-blue-600/20 text-blue-100 px-3 py-1 rounded text-sm border border-blue-500/30 shadow-sm">🛡 資訊安全</span>
-              <span class="whitespace-nowrap bg-blue-600/20 text-blue-100 px-3 py-1 rounded text-sm border border-blue-500/30 shadow-sm">🛡 醫院管理</span>
-              <span class="whitespace-nowrap bg-blue-600/20 text-blue-100 px-3 py-1 rounded text-sm border border-blue-500/30 shadow-sm">🛡 醫護資訊</span>
-              <span class="whitespace-nowrap bg-blue-600/20 text-blue-100 px-3 py-1 rounded text-sm border border-blue-500/30 shadow-sm">🛡 國際標準</span>
-            </div>
           </div>
-
         </div>
       </div>
 
-      <!-- Content：刻意壓緊，避免超出 A4 -->
-      <div class="flex-1 px-6 py-5 flex gap-0 overflow-hidden bg-white">
-
+      <!-- Content -->
+      <div class="px-7 py-6 grid grid-cols-2 gap-6 h-[calc(296mm-7.2rem)]">
         <!-- LEFT -->
-        <div class="w-1/2 flex flex-col pr-6 border-r border-slate-200 min-h-0">
-          <div class="flex flex-col gap-3">
-
-            <section>
-              <h3 class="text-sm font-bold text-slate-800 border-l-4 border-blue-600 pl-2 mb-2">學歷</h3>
-              <div class="space-y-2">
-                <div class="flex flex-col bg-slate-50 p-2 rounded border border-slate-100">
-                  <span class="font-bold text-slate-800 text-sm">臺北醫學大學</span>
-                  <span class="text-slate-600 text-xs">醫學資訊研究所 碩士</span>
-                </div>
-                <div class="flex flex-col bg-slate-50 p-2 rounded border border-slate-100">
-                  <span class="font-bold text-slate-800 text-sm">臺北醫學大學</span>
-                  <span class="text-slate-600 text-xs">醫學護理系 畢業</span>
-                </div>
+        <div class="flex flex-col min-h-0">
+          <!-- Section: Education -->
+          <section class="mb-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-1.5 h-5 rounded-full bg-blue-600"></span>
+              <h3 class="text-sm font-extrabold text-slate-900 tracking-wide">學歷</h3>
+            </div>
+            <div class="space-y-2">
+              <div class="p-3 rounded-xl border border-slate-200 bg-slate-50">
+                <div class="text-sm font-bold text-slate-900">臺北醫學大學</div>
+                <div class="text-xs text-slate-600 mt-0.5">醫學資訊研究所 碩士</div>
               </div>
-            </section>
-
-            <section>
-              <h3 class="text-sm font-bold text-slate-800 border-l-4 border-blue-600 pl-2 mb-2">專業證照資格</h3>
-              <div class="bg-slate-50 p-2 rounded border border-slate-100">
-                <ul class="space-y-1.5 text-xs text-slate-700">
-                  <li>🏅 臺灣高等考試護理師執照</li>
-                  <li>🏅 ISO27001 主導稽核員</li>
-                  <li>🏅 ISO27701 主導稽核員</li>
-                </ul>
+              <div class="p-3 rounded-xl border border-slate-200 bg-slate-50">
+                <div class="text-sm font-bold text-slate-900">臺北醫學大學</div>
+                <div class="text-xs text-slate-600 mt-0.5">醫學護理系 畢業</div>
               </div>
-            </section>
+            </div>
+          </section>
 
-            <section>
-              <h3 class="text-sm font-bold text-slate-800 border-l-4 border-blue-600 pl-2 mb-2">主要現職與委員經歷</h3>
-              <ul class="space-y-1 text-xs text-slate-700">
-                <li>💼 陽明交大竹銘醫院資訊長 (現任)</li>
-                <li>💼 臺灣醫院協會健康管理資訊委員會委員 (現任)</li>
-                <li>💼 臺灣私立醫療院所協會資促會幹事 (現任)</li>
-                <li>💼 衛福部與數發部資訊資安計畫案審查委員 (現任)</li>
-                <li>💼 台北市立聯合醫院資通安全審查外部委員(現任)</li>
-                <li>💼 教育部資通安全管理面與技術面稽核員 (現任)</li>
-                <li>💼 行政院公務人員資通安全職能訓練講師 (現任)</li>
-                <li>💼 新北市青年局生技創業導師 (現任)</li>
-                <li>💼 台北三大生殖中心資訊顧問(現任)</li>
+          <!-- Section: Licenses -->
+          <section class="mb-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-1.5 h-5 rounded-full bg-blue-600"></span>
+              <h3 class="text-sm font-extrabold text-slate-900 tracking-wide">專業證照資格</h3>
+            </div>
+            <div class="p-3 rounded-xl border border-slate-200 bg-white">
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>臺灣高等考試護理師執照</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>ISO27001 主導稽核員</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>ISO27701 主導稽核員</li>
               </ul>
-            </section>
+            </div>
+          </section>
 
-          </div>
+          <!-- Section: Current -->
+          <section class="flex-1 min-h-0">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-1.5 h-5 rounded-full bg-blue-600"></span>
+              <h3 class="text-sm font-extrabold text-slate-900 tracking-wide">主要現職與委員經歷</h3>
+            </div>
+            <div class="p-3 rounded-xl border border-slate-200 bg-white h-full overflow-hidden">
+              <ul class="space-y-1.5 text-xs text-slate-700 leading-snug">
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-blue-300"></span>陽明交大竹銘醫院資訊長 (現任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-blue-300"></span>臺灣醫院協會健康管理資訊委員會委員 (現任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-blue-300"></span>臺灣私立醫療院所協會資促會幹事 (現任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-blue-300"></span>衛福部與數發部資訊資安計畫案審查委員 (現任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-blue-300"></span>台北市立聯合醫院資通安全審查外部委員(現任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-blue-300"></span>教育部資通安全管理面與技術面稽核員 (現任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-blue-300"></span>行政院公務人員資通安全職能訓練講師 (現任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-blue-300"></span>新北市青年局生技創業導師 (現任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-blue-300"></span>台北三大生殖中心資訊顧問(現任)</li>
+              </ul>
+            </div>
+          </section>
 
-          <div class="flex-1"></div>
-
-          <!-- ✅ 左下角：已替換成你要的 7 條 -->
-          <section class="pt-3 border-t border-slate-100">
-            <h3 class="text-sm font-bold text-slate-600 border-l-4 border-slate-400 pl-2 mb-2">相關重要經歷</h3>
-            <ul class="space-y-1 text-[11px] text-slate-600 leading-tight">
-              <li>• 臺北醫學大學副資訊長兼資訊安全組長(曾任)</li>
-              <li>• 臺北醫學大學副資訊長兼網路通訊組長(曾任)</li>
-              <li>• 臺北市立萬芳醫院資訊長 (曾任)</li>
-              <li>• 臺北市立萬芳醫院資訊室主任(曾任)</li>
-              <li>• 臺北市立萬芳醫院資訊室副主任(曾任)</li>
-              <li>• 臺北醫學大學卓越癌症計畫研究護士(曾任)</li>
-              <li>• 臺灣醫學資訊學會研究助理(曾任)</li>
-            </ul>
+          <!-- Bottom-left -->
+          <section class="mt-4 pt-4 border-t border-slate-200">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-1.5 h-5 rounded-full bg-slate-400"></span>
+              <h3 class="text-sm font-extrabold text-slate-700 tracking-wide">相關重要經歷</h3>
+            </div>
+            <div class="p-3 rounded-xl border border-slate-200 bg-slate-50">
+              <ul class="space-y-1.5 text-[11px] text-slate-700 leading-snug">
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>臺北醫學大學副資訊長兼資訊安全組長(曾任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>臺北醫學大學副資訊長兼網路通訊組長(曾任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>臺北市立萬芳醫院資訊長 (曾任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>臺北市立萬芳醫院資訊室主任(曾任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>臺北市立萬芳醫院資訊室副主任(曾任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>臺北醫學大學卓越癌症計畫研究護士(曾任)</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>臺灣醫學資訊學會研究助理(曾任)</li>
+              </ul>
+            </div>
           </section>
         </div>
 
         <!-- RIGHT -->
-        <div class="w-1/2 flex flex-col pl-6 min-h-0">
-          <div class="flex flex-col gap-3 min-h-0">
-
-            <section>
-              <h3 class="text-sm font-bold text-slate-600 border-l-4 border-slate-400 pl-2 mb-2">講師經歷</h3>
-              <ul class="space-y-1 text-xs text-slate-600">
-                <li>📘 臺灣資訊安全大會講師</li>
-                <li>📘 臺灣雲端資訊大會講師</li>
-                <li>📘 臺灣醫務管理學會講師</li>
-                <li>📘 臺灣健康智慧醫療科技發展學會講師</li>
+        <div class="flex flex-col min-h-0">
+          <!-- Lecturer -->
+          <section class="mb-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-1.5 h-5 rounded-full bg-slate-400"></span>
+              <h3 class="text-sm font-extrabold text-slate-700 tracking-wide">講師經歷</h3>
+            </div>
+            <div class="p-3 rounded-xl border border-slate-200 bg-white">
+              <ul class="space-y-1.5 text-xs text-slate-700">
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>臺灣資訊安全大會講師</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>臺灣雲端資訊大會講師</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>臺灣醫務管理學會講師</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>臺灣健康智慧醫療科技發展學會講師</li>
               </ul>
-            </section>
+            </div>
+          </section>
 
-            <section class="flex flex-col flex-1 min-h-0">
-              <h3 class="text-sm font-bold text-slate-800 border-l-4 border-blue-600 pl-2 mb-2">國際學術發表與論文</h3>
+          <!-- Publications -->
+          <section class="flex-1 min-h-0">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-1.5 h-5 rounded-full bg-blue-600"></span>
+              <h3 class="text-sm font-extrabold text-slate-900 tracking-wide">國際學術發表與論文</h3>
+            </div>
 
-              <div class="mb-2 bg-slate-50 p-2 rounded-r-lg border-l-2 border-slate-300 shadow-sm">
-                <h4 class="text-[11px] font-bold text-slate-800 mb-1">🎓 碩士論文</h4>
-                <p class="text-[10px] text-slate-600 leading-tight italic">
-                  Presentation and visualization of large-scale/multi-dimension disease associations – making sense of diseasome to clinicians and researchers of prostate cancer
-                </p>
+            <!-- Thesis -->
+            <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 mb-3">
+              <div class="text-[11px] font-extrabold text-slate-900">碩士論文</div>
+              <div class="mt-1 text-[10px] text-slate-600 italic leading-snug">
+                Presentation and visualization of large-scale/multi-dimension disease associations – making sense of diseasome to clinicians and researchers of prostate cancer
+              </div>
+            </div>
+
+            <!-- List -->
+            <div class="p-3 rounded-xl border border-slate-200 bg-white h-full overflow-hidden">
+              <div class="flex items-end justify-between mb-2">
+                <div class="text-[11px] font-extrabold text-slate-800">國際發表部份列舉</div>
+                <div class="text-[10px] text-slate-400">Selected Publications</div>
               </div>
 
-              <div class="flex-1 min-h-0">
-                <h4 class="text-[11px] font-bold text-slate-700 mb-1 border-b border-slate-200 pb-1 flex justify-between items-end">
-                  <span>國際發表部份列舉</span>
-                  <span class="text-[9px] font-normal text-slate-400">Selected Publications</span>
-                </h4>
+              <ol class="space-y-2">
+                <li class="flex gap-2 text-[9.5px] text-slate-700 leading-snug">
+                  <span class="font-bold text-slate-400 min-w-[14px]">1.</span>
+                  <span class="clamp-2">Shuo-Chen Chien, Chia-Hui Chien, Chun-You Chen, Po-Han Chien, Chun-Kung Hsu, Hsuan-Chia Yang, and Yu-Chuan Jack Li: Using Technology Acceptance Model to Explore Physicians' Perspectives of Clinical Decision Support System Alerts. BMJ Health & Care Informatics (2024 JIF=4.4, ranking 43/185=77.03%, ESCI) 2025.</span>
+                </li>
+                <li class="flex gap-2 text-[9.5px] text-slate-700 leading-snug">
+                  <span class="font-bold text-slate-400 min-w-[14px]">2.</span>
+                  <span class="clamp-2">Huang Chu Ya, Nguyen Phung Anh Alex, Clinciu Daniel L., Hsu Chun Kung, et al. A personalized medication management platform (PMMP) to improve medication adherence: A randomized control trial. Computer Methods and Programs in Biomedicine 2017(140):275-281.</span>
+                </li>
+                <li class="flex gap-2 text-[9.5px] text-slate-700 leading-snug">
+                  <span class="font-bold text-slate-400 min-w-[14px]">3.</span>
+                  <span class="clamp-2">Usman Iqbal, Chun-Kung Hsu, Phung Anh (Alex) Ngu, et al. Cancer-Disease Associations: A Visualization and Animation through Medical Big Data. Computer Methods and Programs in Biomedicine 2016(127):44-51.</span>
+                </li>
+                <li class="flex gap-2 text-[9.5px] text-slate-700 leading-snug">
+                  <span class="font-bold text-slate-400 min-w-[14px]">4.</span>
+                  <span class="clamp-2">Chu-Ya Huang, Phung-Anh Nguyen... Chun-Kung Hsu, et al. A Personalized Medication Management Platform (PMMP) to Improve Medication Adherence. Computer Methods and Programs in Biomedicine 2016.</span>
+                </li>
+                <li class="flex gap-2 text-[9.5px] text-slate-700 leading-snug">
+                  <span class="font-bold text-slate-400 min-w-[14px]">5.</span>
+                  <span class="clamp-2">Chun-Ming Shih... Chun-Kung Hsu, et al. Managing mass events and competitions with difficult-to-access locations using mobile electrocardiac monitoring. Computer Methods and Programs in Biomedicine 2015(121):109-115.</span>
+                </li>
+                <li class="flex gap-2 text-[9.5px] text-slate-700 leading-snug">
+                  <span class="font-bold text-slate-400 min-w-[14px]">6.</span>
+                  <span class="clamp-2">Jian WS... Hsu CK, et al. LabPush: a pilot study of providing remote clinics with laboratory results via short message service (SMS) in Swaziland, Africa. PLoS ONE. 7(9): e44462</span>
+                </li>
+              </ol>
+            </div>
+          </section>
 
-                <div class="space-y-1">
-                  <div class="text-[9px] leading-snug text-slate-600 font-serif text-justify border-b border-dashed border-slate-100 pb-1 flex gap-2">
-                    <span class="font-bold text-slate-400 min-w-[12px]">1.</span>
-                    <span>Shuo-Chen Chien, Chia-Hui Chien, Chun-You Chen... BMJ Health & Care Informatics... 2025.</span>
-                  </div>
-                  <div class="text-[9px] leading-snug text-slate-600 font-serif text-justify border-b border-dashed border-slate-100 pb-1 flex gap-2">
-                    <span class="font-bold text-slate-400 min-w-[12px]">2.</span>
-                    <span>Huang Chu Ya, Nguyen Phung Anh Alex... Computer Methods and Programs in Biomedicine 2017...</span>
-                  </div>
-                  <div class="text-[9px] leading-snug text-slate-600 font-serif text-justify border-b border-dashed border-slate-100 pb-1 flex gap-2">
-                    <span class="font-bold text-slate-400 min-w-[12px]">3.</span>
-                    <span>Usman Iqbal, Chun-Kung Hsu... Computer Methods and Programs in Biomedicine 2016...</span>
-                  </div>
-                  <div class="text-[9px] leading-snug text-slate-600 font-serif text-justify border-b border-dashed border-slate-100 pb-1 flex gap-2">
-                    <span class="font-bold text-slate-400 min-w-[12px]">4.</span>
-                    <span>Chu-Ya Huang... A Personalized Medication Management Platform (PMMP)... 2016.</span>
-                  </div>
-                  <div class="text-[9px] leading-snug text-slate-600 font-serif text-justify border-b border-dashed border-slate-100 pb-1 flex gap-2">
-                    <span class="font-bold text-slate-400 min-w-[12px]">5.</span>
-                    <span>Chun-Ming Shih... mobile electrocardiac monitoring... 2015...</span>
-                  </div>
-                  <div class="text-[9px] leading-snug text-slate-600 font-serif text-justify pb-0 flex gap-2">
-                    <span class="font-bold text-slate-400 min-w-[12px]">6.</span>
-                    <span>Jian WS... LabPush... PLoS ONE. 7(9): e44462</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          <div class="flex-1"></div>
-
-          <section class="pt-3 border-t border-slate-100">
-            <h3 class="text-sm font-bold text-slate-600 border-l-4 border-slate-400 pl-2 mb-2">國際建置系統經驗</h3>
-            <ul class="space-y-1 text-[11px] text-slate-600 leading-tight">
-              <li>🌐 美國－華盛頓特區醫院電子病歷交換案</li>
-              <li>🌐 史瓦帝尼－建置愛滋病國家存活行動檢驗室</li>
-              <li>🌐 聖多美普林西比－建置門診大樓醫療資訊系統</li>
-              <li>
-                🌐 宏都拉斯－建置公立醫院醫療資訊系統
-                <span class="text-slate-400 text-[10px] ml-1">（COVID 期間）</span>
-              </li>
-            </ul>
+          <!-- Bottom-right -->
+          <section class="mt-4 pt-4 border-t border-slate-200">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-1.5 h-5 rounded-full bg-slate-400"></span>
+              <h3 class="text-sm font-extrabold text-slate-700 tracking-wide">國際建置系統經驗</h3>
+            </div>
+            <div class="p-3 rounded-xl border border-slate-200 bg-slate-50">
+              <ul class="space-y-1.5 text-[11px] text-slate-700 leading-snug">
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>美國－華盛頓特區醫院電子病歷交換案</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>史瓦帝尼－建置愛滋病國家存活行動檢驗室</li>
+                <li class="flex items-start gap-2"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>聖多美普林西比－建置門診大樓醫療資訊系統</li>
+                <li class="flex items-start gap-2">
+                  <span class="mt-1 w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                  <span>
+                    宏都拉斯－建置公立醫院醫療資訊系統
+                    <span class="text-slate-400 text-[10px] ml-1">（COVID 期間）</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
           </section>
         </div>
-
       </div>
+
     </div>
   </div>
 </body>
