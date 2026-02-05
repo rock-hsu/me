@@ -6,17 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>許權廣(Rock) 簡歷</title>
     
-    <!-- 1. 載入 Tailwind CSS (樣式引擎) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- 2. 載入 React 和 ReactDOM (核心引擎) -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
-    <!-- 3. 載入 Babel (讓瀏覽器看懂 JSX) -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <!-- 列印樣式設定 -->
     <style>
         @media print {
             @page { margin: 0; size: A4; }
@@ -44,31 +38,17 @@
         const Shield = (props) => <IconWrapper {...props}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></IconWrapper>;
         const Download = (props) => <IconWrapper {...props}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></IconWrapper>;
 
-        // --- 主程式開始 ---
         function Resume() {
             const [profile] = useState({
                 name: "許權廣",
                 title: "陽明交大竹銘醫院資訊長",
-                contact: {
-                email: "rock.hsu@chuming.org.tw",
-                phone: "0989-632-514"
-                },
-                expertise: [
-                "人工智慧",
-                "資訊安全",
-                "醫院管理",
-                "醫護資訊",
-                "國際標準"
-                ],
+                contact: { email: "rock.hsu@chuming.org.tw", phone: "0989-632-514" },
+                expertise: ["人工智慧","資訊安全","醫院管理","醫護資訊","國際標準"],
                 education: [
-                { degree: "醫學資訊研究所 碩士", school: "臺北醫學大學" },
-                { degree: "醫學護理系 畢業", school: "臺北醫學大學" }
+                    { degree: "醫學資訊研究所 碩士", school: "臺北醫學大學" },
+                    { degree: "醫學護理系 畢業", school: "臺北醫學大學" }
                 ],
-                licenses: [
-                "臺灣高等考試護理師執照",
-                "ISO27001 主導稽核員",
-                "ISO27701 主導稽核員"
-                ],
+                licenses: ["臺灣高等考試護理師執照","ISO27001 主導稽核員","ISO27701 主導稽核員"],
                 thesis: "Presentation and visualization of large-scale/multi-dimension disease associations – making sense of diseasome to clinicians and researchers of prostate cancer"
             });
 
@@ -84,7 +64,6 @@
                 "台北三大生殖中心資訊顧問(現任)"
             ]);
 
-            // ✅ 更新：相關重要經歷（7 條）
             const [pastJobs] = useState([
                 "臺北醫學大學副資訊長兼資訊安全組長(曾任)",
                 "臺北醫學大學副資訊長兼網路通訊組長(曾任)",
@@ -119,226 +98,202 @@
 
             return (
                 <div className="min-h-screen py-4 flex justify-center font-sans antialiased text-slate-800 relative">
-                
-                {/* PDF Download Button */}
-                <button 
-                    onClick={() => window.print()}
-                    className="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-2xl transition-all z-50 flex items-center gap-3 print:hidden hover:scale-105 border-2 border-white/20 cursor-pointer"
-                    title="列印 / 另存為 PDF"
-                >
-                    <Download size={20} />
-                    <span className="font-bold tracking-wide">下載 PDF</span>
-                </button>
 
-                {/* A4 Container */}
-                <div className="w-[210mm] h-[295mm] bg-white shadow-2xl flex flex-col overflow-hidden print:shadow-none print:w-full print:h-full print:m-0 print:overflow-visible">
-                    
-                    {/* Header */}
-                    <div className="bg-slate-900 text-white p-6 shrink-0 flex items-center justify-between print:bg-slate-900 print:text-white border-b-4 border-blue-600">
-                    <div className="flex items-center gap-8 w-full">
-                        
-                        {/* Photo */}
-                        <div className="relative w-32 h-44 shrink-0 bg-slate-800 rounded-lg overflow-hidden border-4 border-slate-600 shadow-xl print:border-slate-600">
-                        <img 
-                            src="./rock.jpg" 
-                            alt="許權廣" 
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.parentNode.innerHTML = '<div class="flex flex-col items-center justify-center w-full h-full text-slate-500 text-xs text-center p-1 bg-slate-800"><span>無法讀取</span><span class="text-[10px] mt-1">rock.jpg</span></div>';
-                            }}
-                        />
-                        </div>
+                    <button 
+                        onClick={() => window.print()}
+                        className="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-2xl transition-all z-50 flex items-center gap-3 print:hidden hover:scale-105 border-2 border-white/20 cursor-pointer"
+                        title="列印 / 另存為 PDF"
+                    >
+                        <Download size={20} />
+                        <span className="font-bold tracking-wide">下載 PDF</span>
+                    </button>
 
-                        {/* Info */}
-                        <div className="flex-1 flex flex-col justify-center gap-1">
-                        <div>
-                            <h1 className="text-3xl font-extrabold tracking-tight mb-1">{profile.name}</h1>
-                            <h2 className="text-xl text-blue-400 font-medium tracking-wide">{profile.title}</h2>
-                        </div>
-                        
-                        <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-slate-300 font-light mt-1">
-                            <div className="flex items-center gap-2">
-                            <Mail size={16} className="text-blue-400" />
-                            <span>{profile.contact.email}</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                            <Phone size={16} className="text-blue-400" />
-                            <span>{profile.contact.phone}</span>
-                            </div>
-                        </div>
+                    <div className="w-[210mm] h-[296mm] bg-white shadow-2xl flex flex-col overflow-hidden print:shadow-none print:w-full print:h-full print:m-0 print:overflow-visible">
 
-                        {/* Tags */}
-                        <div className="flex flex-nowrap gap-2 mt-3 overflow-visible">
-                            {profile.expertise.map((item, idx) => (
-                            <span key={idx} className="whitespace-nowrap bg-blue-600/20 text-blue-100 px-3 py-1 rounded text-sm border border-blue-500/30 flex items-center gap-1 shadow-sm">
-                                <Shield size={12} /> {item}
-                            </span>
-                            ))}
-                        </div>
-                        </div>
-                    </div>
-                    </div>
+                        <div className="bg-slate-900 text-white p-6 shrink-0 flex items-center justify-between print:bg-slate-900 print:text-white border-b-4 border-blue-600">
+                            <div className="flex items-center gap-8 w-full">
 
-                    {/* Content */}
-                    <!-- ✅ 版面控高：py-6 → py-5 -->
-                    <div className="flex-1 px-6 py-5 flex gap-0 overflow-hidden print:px-6 print:py-5 bg-white">
-                    
-                    {/* LEFT */}
-                    <div className="w-1/2 flex flex-col pr-6 border-r border-slate-200 min-h-0">
-                        
-                        {/* 上半部內容：gap-4 → gap-3 */}
-                        <div className="flex flex-col gap-3">
-                            <section>
-                                <h3 className="text-sm font-bold text-slate-800 border-l-4 border-blue-600 pl-2 mb-2 flex items-center gap-2">
-                                學歷
-                                </h3>
-                                <div className="space-y-2">
-                                {profile.education.map((edu, idx) => (
-                                    <div key={idx} className="flex flex-col bg-slate-50 p-2 rounded border border-slate-100">
-                                    <span className="font-bold text-slate-800 text-sm">{edu.school}</span>
-                                    <span className="text-slate-600 text-xs">{edu.degree}</span>
+                                <div className="relative w-32 h-44 shrink-0 bg-slate-800 rounded-lg overflow-hidden border-4 border-slate-600 shadow-xl print:border-slate-600">
+                                    <img 
+                                        src="./rock.jpg" 
+                                        alt="許權廣" 
+                                        className="w-full h-full object-cover"
+                                        onError={(e) => {
+                                            e.target.onerror = null;
+                                            e.target.parentNode.innerHTML = '<div class="flex flex-col items-center justify-center w-full h-full text-slate-500 text-xs text-center p-1 bg-slate-800"><span>無法讀取</span><span class="text-[10px] mt-1">rock.jpg</span></div>';
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="flex-1 flex flex-col justify-center gap-1">
+                                    <div>
+                                        <h1 className="text-3xl font-extrabold tracking-tight mb-1">{profile.name}</h1>
+                                        <h2 className="text-xl text-blue-400 font-medium tracking-wide">{profile.title}</h2>
                                     </div>
-                                ))}
-                                </div>
-                            </section>
 
-                            <section>
-                                <h3 className="text-sm font-bold text-slate-800 border-l-4 border-blue-600 pl-2 mb-2 flex items-center gap-2">
-                                專業證照資格
-                                </h3>
-                                <div className="bg-slate-50 p-2 rounded border border-slate-100">
-                                <ul className="space-y-1.5">
-                                    {profile.licenses.map((lic, idx) => (
-                                    <li key={idx} className="flex items-center gap-2 text-xs text-slate-700">
-                                        <Award size={14} className="text-blue-600 shrink-0" />
-                                        {lic}
-                                    </li>
-                                    ))}
-                                </ul>
-                                </div>
-                            </section>
+                                    <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-slate-300 font-light mt-1">
+                                        <div className="flex items-center gap-2">
+                                            <Mail size={16} className="text-blue-400" />
+                                            <span>{profile.contact.email}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <Phone size={16} className="text-blue-400" />
+                                            <span>{profile.contact.phone}</span>
+                                        </div>
+                                    </div>
 
-                            <section>
-                                <h3 className="text-sm font-bold text-slate-800 border-l-4 border-blue-600 pl-2 mb-2 flex items-center gap-2">
-                                主要現職與委員經歷
-                                </h3>
-                                {/* ✅ 版面控高：space-y-1.5 → space-y-1；p-1 → p-0.5 */}
-                                <ul className="space-y-1">
-                                {currentJobs.map((job, idx) => (
-                                    <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 leading-snug p-0.5 rounded -ml-1">
-                                    <Briefcase size={14} className="text-blue-500 mt-0.5 shrink-0" />
-                                    <span>{job}</span>
-                                    </li>
-                                ))}
-                                </ul>
-                            </section>
-                        </div>
-
-                        {/* 撐高：讓底部區塊靠齊下緣 */}
-                        <div className="flex-1"></div>
-
-                        {/* 左下：相關重要經歷（✅ 壓高度：space-y-1.5→1, leading-snug→tight, p-1→p-0.5） */}
-                        <section className="pt-3 border-t border-slate-100">
-                            <h3 className="text-sm font-bold text-slate-600 border-l-4 border-slate-400 pl-2 mb-2 flex items-center gap-2">
-                                相關重要經歷
-                            </h3>
-                            <ul className="space-y-1">
-                                {pastJobs.map((job, idx) => (
-                                <li key={idx} className="flex items-start gap-2.5 text-[11px] text-slate-600 leading-tight -ml-1 p-0.5">
-                                    <span className="w-1.5 h-1.5 bg-slate-300 rounded-full mt-1.5 shrink-0 ml-1"></span>
-                                    {job}
-                                </li>
-                                ))}
-                            </ul>
-                        </section>
-
-                    </div>
-
-                    {/* RIGHT */}
-                    <div className="w-1/2 flex flex-col pl-6 min-h-0">
-                        
-                        {/* 上半部（講師 + 論文） */}
-                        <div className="flex flex-col gap-3 min-h-0">
-                            <section>
-                                <h3 className="text-sm font-bold text-slate-600 border-l-4 border-slate-400 pl-2 mb-2 flex items-center gap-2">
-                                    講師經歷
-                                </h3>
-                                {/* ✅ 版面控高：space-y-1.5→1，p-1→p-0.5 */}
-                                <ul className="space-y-1">
-                                    {lecturer.map((job, idx) => (
-                                    <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-600 leading-snug -ml-1 p-0.5">
-                                        <BookOpen size={14} className="text-slate-400 mt-0.5 shrink-0" />
-                                        {job}
-                                    </li>
-                                    ))}
-                                </ul>
-                            </section>
-
-                            <section className="flex flex-col flex-1 min-h-0">
-                                <h3 className="text-sm font-bold text-slate-800 border-l-4 border-blue-600 pl-2 mb-2 flex items-center gap-2">
-                                    國際學術發表與論文
-                                </h3>
-                                
-                                {/* ✅ 版面控高：mb-3→mb-2，p-2.5→p-2 */}
-                                <div className="mb-2 bg-slate-50 p-2 rounded-r-lg border-l-2 border-slate-300 shadow-sm shrink-0">
-                                    <h4 className="text-[11px] font-bold text-slate-800 mb-1 flex items-center gap-1">
-                                        <GraduationCap size={14} /> 碩士論文
-                                    </h4>
-                                    <p className="text-[10px] text-slate-600 leading-tight italic">
-                                        {profile.thesis}
-                                    </p>
-                                </div>
-
-                                <div className="flex-1 min-h-0">
-                                    <h4 className="text-[11px] font-bold text-slate-700 mb-1 border-b border-slate-200 pb-1 flex justify-between items-end">
-                                        <span>國際發表部份列舉</span>
-                                        <span className="text-[9px] font-normal text-slate-400">Selected Publications</span>
-                                    </h4>
-
-                                    {/* ✅ 版面控高：space-y-2→space-y-1 */}
-                                    <div className="space-y-1">
-                                        {publications.map((pub, idx) => (
-                                            <div key={idx} className="text-[9px] leading-snug text-slate-600 font-serif text-justify border-b border-dashed border-slate-100 pb-1 last:border-0 last:pb-0 flex gap-2">
-                                                <span className="font-bold text-slate-400 text-[9px] mt-0.5 min-w-[12px]">{idx + 1}.</span>
-                                                <span>{pub}</span>
-                                            </div>
+                                    <div className="flex flex-nowrap gap-2 mt-3 overflow-visible">
+                                        {profile.expertise.map((item, idx) => (
+                                            <span key={idx} className="whitespace-nowrap bg-blue-600/20 text-blue-100 px-3 py-1 rounded text-sm border border-blue-500/30 flex items-center gap-1 shadow-sm">
+                                                <Shield size={12} /> {item}
+                                            </span>
                                         ))}
                                     </div>
                                 </div>
-                            </section>
+
+                            </div>
                         </div>
 
-                        {/* 撐高：讓國際建置固定在右下 */}
-                        <div className="flex-1"></div>
+                        <div className="flex-1 px-6 py-5 flex gap-0 overflow-hidden print:px-6 print:py-5 bg-white">
 
-                        {/* 右下：國際建置系統經驗（✅ 壓高度：space-y-1.5→1，p-1→p-0.5） */}
-                        <section className="pt-3 border-t border-slate-100">
-                            <h3 className="text-sm font-bold text-slate-600 border-l-4 border-slate-400 pl-2 mb-2 flex items-center gap-2">
-                                國際建置系統經驗
-                            </h3>
-                            <ul className="space-y-1">
-                                {internationalBuildExp.map((item, idx) => (
-                                    <li key={idx} className="flex items-start gap-2.5 text-[11px] text-slate-600 leading-tight -ml-1 p-0.5">
-                                        <Globe size={14} className="text-slate-400 mt-0.5 shrink-0" />
-                                        <span>{item}</span>
-                                    </li>
-                                ))}
+                            <div className="w-1/2 flex flex-col pr-6 border-r border-slate-200 min-h-0">
+                                <div className="flex flex-col gap-3">
+                                    <section>
+                                        <h3 className="text-sm font-bold text-slate-800 border-l-4 border-blue-600 pl-2 mb-2 flex items-center gap-2">
+                                            學歷
+                                        </h3>
+                                        <div className="space-y-2">
+                                            {profile.education.map((edu, idx) => (
+                                                <div key={idx} className="flex flex-col bg-slate-50 p-2 rounded border border-slate-100">
+                                                    <span className="font-bold text-slate-800 text-sm">{edu.school}</span>
+                                                    <span className="text-slate-600 text-xs">{edu.degree}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </section>
 
-                                <li className="flex items-start gap-2.5 text-[11px] text-slate-600 leading-tight -ml-1 p-0.5">
-                                    <Globe size={14} className="text-slate-400 mt-0.5 shrink-0" />
-                                    <span>
-                                        宏都拉斯－建置公立醫院醫療資訊系統
-                                        <span className="text-slate-400 text-[10px] ml-1">（COVID 期間）</span>
-                                    </span>
-                                </li>
-                            </ul>
-                        </section>
+                                    <section>
+                                        <h3 className="text-sm font-bold text-slate-800 border-l-4 border-blue-600 pl-2 mb-2 flex items-center gap-2">
+                                            專業證照資格
+                                        </h3>
+                                        <div className="bg-slate-50 p-2 rounded border border-slate-100">
+                                            <ul className="space-y-1.5">
+                                                {profile.licenses.map((lic, idx) => (
+                                                    <li key={idx} className="flex items-center gap-2 text-xs text-slate-700">
+                                                        <Award size={14} className="text-blue-600 shrink-0" />
+                                                        {lic}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </section>
 
+                                    <section>
+                                        <h3 className="text-sm font-bold text-slate-800 border-l-4 border-blue-600 pl-2 mb-2 flex items-center gap-2">
+                                            主要現職與委員經歷
+                                        </h3>
+                                        <ul className="space-y-1">
+                                            {currentJobs.map((job, idx) => (
+                                                <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 leading-snug p-0.5 rounded -ml-1">
+                                                    <Briefcase size={14} className="text-blue-500 mt-0.5 shrink-0" />
+                                                    <span>{job}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </section>
+                                </div>
+
+                                <div className="flex-1"></div>
+
+                                <section className="pt-3 border-t border-slate-100">
+                                    <h3 className="text-sm font-bold text-slate-600 border-l-4 border-slate-400 pl-2 mb-2 flex items-center gap-2">
+                                        相關重要經歷
+                                    </h3>
+                                    <ul className="space-y-1">
+                                        {pastJobs.map((job, idx) => (
+                                            <li key={idx} className="flex items-start gap-2.5 text-[11px] text-slate-600 leading-tight -ml-1 p-0.5">
+                                                <span className="w-1.5 h-1.5 bg-slate-300 rounded-full mt-1.5 shrink-0 ml-1"></span>
+                                                {job}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </section>
+                            </div>
+
+                            <div className="w-1/2 flex flex-col pl-6 min-h-0">
+                                <div className="flex flex-col gap-3 min-h-0">
+                                    <section>
+                                        <h3 className="text-sm font-bold text-slate-600 border-l-4 border-slate-400 pl-2 mb-2 flex items-center gap-2">
+                                            講師經歷
+                                        </h3>
+                                        <ul className="space-y-1">
+                                            {lecturer.map((job, idx) => (
+                                                <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-600 leading-snug -ml-1 p-0.5">
+                                                    <BookOpen size={14} className="text-slate-400 mt-0.5 shrink-0" />
+                                                    {job}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </section>
+
+                                    <section className="flex flex-col flex-1 min-h-0">
+                                        <h3 className="text-sm font-bold text-slate-800 border-l-4 border-blue-600 pl-2 mb-2 flex items-center gap-2">
+                                            國際學術發表與論文
+                                        </h3>
+
+                                        <div className="mb-2 bg-slate-50 p-2 rounded-r-lg border-l-2 border-slate-300 shadow-sm shrink-0">
+                                            <h4 className="text-[11px] font-bold text-slate-800 mb-1 flex items-center gap-1">
+                                                <GraduationCap size={14} /> 碩士論文
+                                            </h4>
+                                            <p className="text-[10px] text-slate-600 leading-tight italic">
+                                                {profile.thesis}
+                                            </p>
+                                        </div>
+
+                                        <div className="flex-1 min-h-0">
+                                            <h4 className="text-[11px] font-bold text-slate-700 mb-1 border-b border-slate-200 pb-1 flex justify-between items-end">
+                                                <span>國際發表部份列舉</span>
+                                                <span className="text-[9px] font-normal text-slate-400">Selected Publications</span>
+                                            </h4>
+                                            <div className="space-y-1">
+                                                {publications.map((pub, idx) => (
+                                                    <div key={idx} className="text-[9px] leading-snug text-slate-600 font-serif text-justify border-b border-dashed border-slate-100 pb-1 last:border-0 last:pb-0 flex gap-2">
+                                                        <span className="font-bold text-slate-400 text-[9px] mt-0.5 min-w-[12px]">{idx + 1}.</span>
+                                                        <span>{pub}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+
+                                <div className="flex-1"></div>
+
+                                <section className="pt-3 border-t border-slate-100">
+                                    <h3 className="text-sm font-bold text-slate-600 border-l-4 border-slate-400 pl-2 mb-2 flex items-center gap-2">
+                                        國際建置系統經驗
+                                    </h3>
+                                    <ul className="space-y-1">
+                                        {internationalBuildExp.map((item, idx) => (
+                                            <li key={idx} className="flex items-start gap-2.5 text-[11px] text-slate-600 leading-tight -ml-1 p-0.5">
+                                                <Globe size={14} className="text-slate-400 mt-0.5 shrink-0" />
+                                                <span>{item}</span>
+                                            </li>
+                                        ))}
+
+                                        <li className="flex items-start gap-2.5 text-[11px] text-slate-600 leading-tight -ml-1 p-0.5">
+                                            <Globe size={14} className="text-slate-400 mt-0.5 shrink-0" />
+                                            <span>
+                                                宏都拉斯－建置公立醫院醫療資訊系統
+                                                <span className="text-slate-400 text-[10px] ml-1">（COVID 期間）</span>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </section>
+                            </div>
+
+                        </div>
                     </div>
-
-                    </div>
-                </div>
                 </div>
             );
         }
