@@ -9,10 +9,13 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    @media print {
-      @page { margin: 0; size: A4; }
-      body { margin: 0; -webkit-print-color-adjust: exact; }
-    }
+  @media print {
+  .print-scale {
+    transform: scale(0.97);
+    transform-origin: top left;
+    width: calc(100% / 0.97);
+  }
+}
   </style>
 </head>
 
