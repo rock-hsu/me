@@ -1,96 +1,172 @@
-<section class="mb-4">
-  <div class="flex items-center gap-2 mb-2">
-    <span class="w-1 h-4 rounded bg-blue-600"></span>
-    <h3 class="text-sm font-extrabold tracking-wide text-slate-900">
-      國際學術發表與論文
-    </h3>
-    <span class="flex-1 h-px bg-slate-200"></span>
-  </div>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>許權廣（Rock）簡歷</title>
 
-  <div class="rounded-xl border border-slate-200 bg-white p-3">
-    <!-- Thesis -->
-    <div class="flex items-center justify-between mb-1">
-      <div class="text-xs font-extrabold text-slate-800">碩士論文</div>
-      <div class="text-[10px] text-slate-400 font-semibold tracking-wide">Thesis</div>
-    </div>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <div class="text-[10px] leading-snug text-slate-700 italic">
-      Presentation and visualization of large-scale/multi-dimension disease associations –
-      making sense of diseasome to clinicians and researchers of prostate cancer
-    </div>
+  <style>
+    @media print {
+      @page { size: A4; margin: 0; }
+      body {
+        margin: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background: #fff !important;
+      }
+      .print-scale {
+        transform: scale(0.97);
+        transform-origin: top left;
+        width: calc(100% / 0.97);
+      }
+      .print-hide { display: none !important; }
+      .shadow-screen { box-shadow: none !important; }
+    }
+  </style>
+</head>
 
-    <!-- 留白：你點名要的「視覺平衡」 -->
-    <div class="mt-4 pt-3 border-t border-slate-100">
-      <div class="flex items-center justify-between mb-2">
-        <div class="text-xs font-extrabold text-slate-800">
-          國際發表部份列舉
+<body class="bg-slate-200">
+  <!-- PDF -->
+  <button
+    onclick="window.print()"
+    class="print-hide fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full shadow-xl text-sm font-semibold">
+    下載 PDF
+  </button>
+
+  <div class="min-h-screen py-6 flex justify-center font-sans text-slate-800">
+    <div class="print-scale w-[210mm] h-[296mm] bg-white rounded-2xl overflow-hidden shadow-screen shadow-2xl">
+
+      <!-- Header -->
+      <header class="px-7 pt-7 pb-6 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
+        <div class="flex gap-6 items-start">
+          <img src="./rock.jpg" alt="許權廣"
+            class="w-28 h-36 object-cover rounded-xl ring-2 ring-white/20" />
+
+          <div class="flex-1">
+            <div class="flex justify-between">
+              <div>
+                <h1 class="text-3xl font-extrabold">許權廣 <span class="text-sm font-semibold text-slate-300">(Rock)</span></h1>
+                <h2 class="mt-1 text-lg font-semibold text-cyan-200">
+                  陽明交大竹銘醫院資訊長
+                </h2>
+              </div>
+              <div class="text-sm text-slate-200 space-y-1 text-right">
+                <div>rock.hsu@chuming.org.tw</div>
+                <div>0989-632-514</div>
+              </div>
+            </div>
+
+            <div class="mt-4 flex flex-wrap gap-2 text-xs">
+              <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">人工智慧</span>
+              <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">資訊安全</span>
+              <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">醫院管理</span>
+              <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">醫護資訊</span>
+              <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20">國際標準</span>
+            </div>
+          </div>
         </div>
-        <div class="text-[10px] text-slate-400 font-semibold tracking-wide">
-          Selected Publications
-        </div>
-      </div>
+      </header>
 
-      <!-- ❗完整、不省略、不亂改 -->
-      <ol class="space-y-2 text-[10px] leading-snug text-slate-700 list-decimal pl-4">
-        <li>
-          Shuo-Chen Chien, Chia-Hui Chien, Chun-You Chen, Po-Han Chien,
-          Chun-Kung Hsu, Hsuan-Chia Yang, and Yu-Chuan Jack Li.
-          Using Technology Acceptance Model to Explore Physicians' Perspectives
-          of Clinical Decision Support System Alerts.
-          <span class="italic">
-            BMJ Health & Care Informatics
-          </span>
-          (2024 JIF=4.4, ranking 43/185=77.03%, ESCI), 2025.
-        </li>
+      <!-- Content -->
+      <main class="px-7 py-5 h-[calc(296mm-120px)] grid grid-cols-2 gap-6 text-[11px]">
 
-        <li>
-          Huang Chu Ya, Nguyen Phung Anh Alex, Clinciu Daniel L., Hsu Chun Kung, et al.
-          A personalized medication management platform (PMMP) to improve medication adherence:
-          A randomized control trial.
-          <span class="italic">
-            Computer Methods and Programs in Biomedicine
-          </span>
-          2017;140:275–281.
-        </li>
+        <!-- LEFT -->
+        <section class="space-y-4">
+          <div>
+            <h3 class="font-bold text-sm mb-1">學歷</h3>
+            <div class="bg-slate-50 rounded-lg p-2 border">
+              <div class="font-semibold">臺北醫學大學</div>
+              <div class="text-slate-600">醫學資訊研究所 碩士</div>
+              <div class="mt-1 font-semibold">臺北醫學大學</div>
+              <div class="text-slate-600">醫學護理系 畢業</div>
+            </div>
+          </div>
 
-        <li>
-          Usman Iqbal, Chun-Kung Hsu, Phung Anh (Alex) Ngu, et al.
-          Cancer-Disease Associations: A Visualization and Animation through Medical Big Data.
-          <span class="italic">
-            Computer Methods and Programs in Biomedicine
-          </span>
-          2016;127:44–51.
-        </li>
+          <div>
+            <h3 class="font-bold text-sm mb-1">專業證照資格</h3>
+            <div class="bg-slate-50 rounded-lg p-2 border space-y-1">
+              <div>臺灣高等考試護理師執照</div>
+              <div>ISO27001 主導稽核員</div>
+              <div>ISO27701 主導稽核員</div>
+            </div>
+          </div>
 
-        <li>
-          Chu-Ya Huang, Phung-Anh Nguyen, Chun-Kung Hsu, et al.
-          A Personalized Medication Management Platform (PMMP) to Improve Medication Adherence.
-          <span class="italic">
-            Computer Methods and Programs in Biomedicine
-          </span>
-          2016.
-        </li>
+          <div>
+            <h3 class="font-bold text-sm mb-1">主要現職與委員經歷</h3>
+            <div class="bg-white rounded-lg p-2 border space-y-1">
+              <div>陽明交大竹銘醫院資訊長（現任）</div>
+              <div>臺灣醫院協會健康管理資訊委員會委員（現任）</div>
+              <div>臺灣私立醫療院所協會資促會幹事（現任）</div>
+              <div>衛福部與數發部資訊資安計畫案審查委員（現任）</div>
+              <div>台北市立聯合醫院資通安全審查外部委員（現任）</div>
+              <div>教育部資通安全管理面與技術面稽核員（現任）</div>
+              <div>行政院公務人員資通安全職能訓練講師（現任）</div>
+              <div>新北市青年局生技創業導師（現任）</div>
+              <div>台北三大生殖中心資訊顧問（現任）</div>
+            </div>
+          </div>
 
-        <li>
-          Chun-Ming Shih, Chun-Kung Hsu, et al.
-          Managing mass events and competitions with difficult-to-access locations
-          using mobile electrocardiac monitoring.
-          <span class="italic">
-            Computer Methods and Programs in Biomedicine
-          </span>
-          2015;121:109–115.
-        </li>
+          <div>
+            <h3 class="font-bold text-sm mb-1 text-slate-700">相關重要經歷</h3>
+            <div class="bg-slate-50 rounded-lg p-2 border space-y-1">
+              <div>臺北醫學大學副資訊長兼資訊安全組長（曾任）</div>
+              <div>臺北醫學大學副資訊長兼網路通訊組長（曾任）</div>
+              <div>臺北市立萬芳醫院資訊長（曾任）</div>
+              <div>臺北市立萬芳醫院資訊室主任（曾任）</div>
+              <div>臺北市立萬芳醫院資訊室副主任（曾任）</div>
+              <div>臺北醫學大學卓越癌症計畫研究護士（曾任）</div>
+              <div>臺灣醫學資訊學會研究助理（曾任）</div>
+            </div>
+          </div>
+        </section>
 
-        <li>
-          Jian WS, Hsu CK, et al.
-          LabPush: a pilot study of providing remote clinics with laboratory results
-          via short message service (SMS) in Swaziland, Africa.
-          <span class="italic">
-            PLoS ONE
-          </span>
-          2012;7(9):e44462.
-        </li>
-      </ol>
+        <!-- RIGHT -->
+        <section class="space-y-4">
+          <div>
+            <h3 class="font-bold text-sm mb-1 text-slate-700">講師經歷</h3>
+            <div class="bg-white rounded-lg p-2 border space-y-1">
+              <div>臺灣資訊安全大會講師</div>
+              <div>臺灣雲端資訊大會講師</div>
+              <div>臺灣醫務管理學會講師</div>
+              <div>臺灣健康智慧醫療科技發展學會講師</div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-sm mb-1">碩士論文</h3>
+            <div class="bg-white rounded-lg p-2 border italic text-slate-700">
+              Presentation and visualization of large-scale/multi-dimension disease associations –
+              making sense of diseasome to clinicians and researchers of prostate cancer
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-sm mb-1 mt-3">國際發表部份列舉</h3>
+            <ol class="bg-white rounded-lg p-3 border space-y-2 list-decimal pl-4 text-slate-700">
+              <li>Shuo-Chen Chien, Chia-Hui Chien, Chun-You Chen, Po-Han Chien, Chun-Kung Hsu, Hsuan-Chia Yang, and Yu-Chuan Jack Li. Using Technology Acceptance Model to Explore Physicians' Perspectives of Clinical Decision Support System Alerts. <i>BMJ Health & Care Informatics</i>, 2025.</li>
+              <li>Huang Chu Ya, Nguyen Phung Anh Alex, Clinciu Daniel L., Hsu Chun Kung, et al. A personalized medication management platform (PMMP) to improve medication adherence. <i>Computer Methods and Programs in Biomedicine</i>, 2017.</li>
+              <li>Usman Iqbal, Chun-Kung Hsu, et al. Cancer-Disease Associations. <i>Computer Methods and Programs in Biomedicine</i>, 2016.</li>
+              <li>Chu-Ya Huang, Phung-Anh Nguyen, Chun-Kung Hsu, et al. PMMP. <i>Computer Methods and Programs in Biomedicine</i>, 2016.</li>
+              <li>Chun-Ming Shih, Chun-Kung Hsu, et al. Mobile electrocardiac monitoring. <i>Computer Methods and Programs in Biomedicine</i>, 2015.</li>
+              <li>Jian WS, Hsu CK, et al. LabPush. <i>PLoS ONE</i>, 2012.</li>
+            </ol>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-sm mb-1 text-slate-700">國際建置系統經驗</h3>
+            <div class="bg-slate-50 rounded-lg p-2 border space-y-1">
+              <div>美國－華盛頓特區醫院電子病歷交換案</div>
+              <div>史瓦帝尼－建置愛滋病國家存活行動檢驗室</div>
+              <div>聖多美普林西比－建置門診大樓醫療資訊系統</div>
+              <div>宏都拉斯－建置公立醫院醫療資訊系統（COVID 期間）</div>
+            </div>
+          </div>
+        </section>
+
+      </main>
     </div>
   </div>
-</section>
+</body>
+</html>
